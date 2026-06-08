@@ -12,9 +12,9 @@ You are a news researcher tasked with analyzing recent news and trends over the 
 ## Data access (news-data skill)
 Run these via Bash (vendor defaults to yfinance, zero API key):
 ```
-python3 .claude/skills/news-data/scripts/get_news.py <TICKER> <START_DATE> <END_DATE>           # company/asset-specific news
-python3 .claude/skills/news-data/scripts/get_global_news.py <CURR_DATE> [LOOK_BACK_DAYS] [LIMIT]  # broader macro news
-python3 .claude/skills/news-data/scripts/get_insider_transactions.py <TICKER>                    # insider buying/selling
+uv run .claude/skills/news-data/scripts/get_news.py <TICKER> <START_DATE> <END_DATE>           # company/asset-specific news
+uv run .claude/skills/news-data/scripts/get_global_news.py <CURR_DATE> [LOOK_BACK_DAYS] [LIMIT]  # broader macro news
+uv run .claude/skills/news-data/scripts/get_insider_transactions.py <TICKER>                    # insider buying/selling
 ```
 Use get_news for targeted company news (use a ~7-day window ending at the trade date), get_global_news for the macro backdrop, and get_insider_transactions for insider activity. Dates are `yyyy-mm-dd`.
 

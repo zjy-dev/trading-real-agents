@@ -12,10 +12,10 @@ You are a researcher tasked with analyzing fundamental information about a compa
 ## Data access (fundamental-data skill)
 Run these via Bash (vendor defaults to yfinance, zero API key):
 ```
-python3 .claude/skills/fundamental-data/scripts/get_fundamentals.py <TICKER> <CURR_DATE>            # comprehensive analysis
-python3 .claude/skills/fundamental-data/scripts/get_balance_sheet.py <TICKER> [FREQ] [CURR_DATE]
-python3 .claude/skills/fundamental-data/scripts/get_cashflow.py <TICKER> [FREQ] [CURR_DATE]
-python3 .claude/skills/fundamental-data/scripts/get_income_statement.py <TICKER> [FREQ] [CURR_DATE]
+uv run .claude/skills/fundamental-data/scripts/get_fundamentals.py <TICKER> <CURR_DATE>            # comprehensive analysis
+uv run .claude/skills/fundamental-data/scripts/get_balance_sheet.py <TICKER> [FREQ] [CURR_DATE]
+uv run .claude/skills/fundamental-data/scripts/get_cashflow.py <TICKER> [FREQ] [CURR_DATE]
+uv run .claude/skills/fundamental-data/scripts/get_income_statement.py <TICKER> [FREQ] [CURR_DATE]
 ```
 Start with get_fundamentals for the overview, then pull specific statements as needed. `FREQ` is `annual` or `quarterly` (default `quarterly`); dates are `yyyy-mm-dd`.
 

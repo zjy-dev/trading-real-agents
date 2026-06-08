@@ -12,7 +12,7 @@ self-contained skill scripts that default to yfinance (no API key required).
 - `tradingagents/dataflows/` — the data layer the skill scripts reuse.
 
 ## Skills (data access)
-All scripts print a formatted string to stdout. Run via `python3` from the repo
+All scripts print a formatted string to stdout. Run via `uv run` from the repo
 root (vendor defaults to yfinance, zero key; optional `ALPHA_VANTAGE_API_KEY`
 enables alpha_vantage with auto-fallback):
 
@@ -58,9 +58,9 @@ original shared graph state.
 ## Verify
 Smoke-test the skill scripts (no API key, defaults to yfinance):
 ```
-pytest tests/
+uv run pytest tests/
 ```
 Or run a single script directly, e.g.:
 ```
-python3 .claude/skills/market-data/scripts/get_stock_data.py NVDA 2024-05-01 2024-05-10
+uv run .claude/skills/market-data/scripts/get_stock_data.py NVDA 2024-05-01 2024-05-10
 ```

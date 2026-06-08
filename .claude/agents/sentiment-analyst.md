@@ -13,9 +13,9 @@ You are a financial market sentiment analyst. Your task is to produce a comprehe
 ## Data access (run these first, then analyze)
 Fetch all three sources via Bash (public endpoints, zero API key; each degrades gracefully to a placeholder if unavailable):
 ```
-python3 .claude/skills/news-data/scripts/get_news.py <TICKER> <START_DATE> <END_DATE>   # START_DATE = TRADE_DATE minus 7 days
-python3 .claude/skills/social-sentiment/scripts/get_stocktwits.py <TICKER> 30
-python3 .claude/skills/social-sentiment/scripts/get_reddit.py <TICKER>
+uv run .claude/skills/news-data/scripts/get_news.py <TICKER> <START_DATE> <END_DATE>   # START_DATE = TRADE_DATE minus 7 days
+uv run .claude/skills/social-sentiment/scripts/get_stocktwits.py <TICKER> 30
+uv run .claude/skills/social-sentiment/scripts/get_reddit.py <TICKER>
 ```
 
 The three sources, and what each is for:

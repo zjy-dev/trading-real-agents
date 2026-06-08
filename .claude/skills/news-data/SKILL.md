@@ -16,20 +16,20 @@ Provides news and insider data. Scripts are thin wrappers over
 
 ### get_news.py
 ```
-python3 ${CLAUDE_SKILL_DIR}/scripts/get_news.py TICKER START_DATE END_DATE
+uv run ${CLAUDE_SKILL_DIR}/scripts/get_news.py TICKER START_DATE END_DATE
 ```
 Company-specific news between two `yyyy-mm-dd` dates.
 
 ### get_global_news.py
 ```
-python3 ${CLAUDE_SKILL_DIR}/scripts/get_global_news.py CURR_DATE [LOOK_BACK_DAYS] [LIMIT]
+uv run ${CLAUDE_SKILL_DIR}/scripts/get_global_news.py CURR_DATE [LOOK_BACK_DAYS] [LIMIT]
 ```
 Global/macro news. `LOOK_BACK_DAYS` and `LIMIT` are optional; omit to inherit
 config defaults (`global_news_lookback_days`, `global_news_article_limit`).
 
 ### get_insider_transactions.py
 ```
-python3 ${CLAUDE_SKILL_DIR}/scripts/get_insider_transactions.py TICKER
+uv run ${CLAUDE_SKILL_DIR}/scripts/get_insider_transactions.py TICKER
 ```
 Insider transaction report.
 

@@ -37,8 +37,8 @@ Volume-Based Indicators:
 ## Data access (market-data skill)
 Run these via Bash (vendor defaults to yfinance, zero API key):
 ```
-python3 .claude/skills/market-data/scripts/get_stock_data.py <SYMBOL> <START_DATE> <END_DATE>
-python3 .claude/skills/market-data/scripts/get_indicators.py <SYMBOL> <INDICATOR[,INDICATOR...]> <CURR_DATE> [LOOK_BACK_DAYS]
+uv run .claude/skills/market-data/scripts/get_stock_data.py <SYMBOL> <START_DATE> <END_DATE>
+uv run .claude/skills/market-data/scripts/get_indicators.py <SYMBOL> <INDICATOR[,INDICATOR...]> <CURR_DATE> [LOOK_BACK_DAYS]
 ```
 ALWAYS call get_stock_data first. Use a start date a few months before the trade date so indicators have enough history. Then request your chosen indicators (up to 8). Dates are `yyyy-mm-dd`.
 

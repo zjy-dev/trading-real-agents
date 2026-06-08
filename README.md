@@ -25,13 +25,16 @@ tests/       pytest suite (skill-script smoke + data-layer unit tests)
 ```
 
 ## Quick start
-1. Install the data layer (so `import tradingagents` resolves):
+This project uses **[uv](https://docs.astral.sh/uv/)** to manage the Python
+environment.
+1. Sync the environment (creates `.venv`, installs the data layer so
+   `import tradingagents` resolves):
    ```
-   pip install -e .
+   uv sync
    ```
 2. Smoke-test the skill scripts (no API key, defaults to yfinance):
    ```
-   pytest tests/
+   uv run pytest tests/
    ```
 3. Run a full analysis on your agent platform. In Claude Code, ask the
    `orchestrator` subagent:
@@ -56,7 +59,7 @@ debate → portfolio manager (final decision).
 
 ## Tests
 ```
-pytest tests/
+uv run pytest tests/
 ```
 `test_skill_scripts.py` runs every skill script as a subprocess (yfinance,
 zero key); the remaining tests cover the data layer (config, env overrides,

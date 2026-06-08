@@ -21,4 +21,4 @@ trader → risk debate → portfolio manager) and writes all artifacts to
 ## Skills
 `.claude/skills/`: `market-data`, `fundamental-data`, `news-data`,
 `social-sentiment`. Scripts reuse `tradingagents/dataflows/` and default to
-yfinance (no API key). Run with `python3` from the repo root.
+yfinance (no API key). Run with `uv run` from the repo root.

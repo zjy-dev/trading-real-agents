@@ -17,7 +17,7 @@ over `tradingagents.dataflows` and print a formatted string to stdout.
 
 ### get_stock_data.py
 ```
-python3 ${CLAUDE_SKILL_DIR}/scripts/get_stock_data.py SYMBOL START_DATE END_DATE
+uv run ${CLAUDE_SKILL_DIR}/scripts/get_stock_data.py SYMBOL START_DATE END_DATE
 ```
 - `SYMBOL`: e.g. `AAPL`, `NVDA`, `0700.HK`
 - `START_DATE` / `END_DATE`: `yyyy-mm-dd`
@@ -26,7 +26,7 @@ Returns a formatted OHLCV table. Call this **first** before requesting indicator
 
 ### get_indicators.py
 ```
-python3 ${CLAUDE_SKILL_DIR}/scripts/get_indicators.py SYMBOL INDICATOR CURR_DATE [LOOK_BACK_DAYS]
+uv run ${CLAUDE_SKILL_DIR}/scripts/get_indicators.py SYMBOL INDICATOR CURR_DATE [LOOK_BACK_DAYS]
 ```
 - `INDICATOR`: single name or comma-separated list (`rsi`, `macd`, `close_50_sma`, ...)
 - `CURR_DATE`: `yyyy-mm-dd`
