@@ -21,7 +21,7 @@ CLAUDE.md    Claude Code entry point
 tradingagents/
   dataflows/        data layer reused by the skill scripts
   default_config.py vendor routing + TRADINGAGENTS_* env overrides
-main.py      zero-key smoke test for the data layer
+tests/       pytest suite (skill-script smoke + data-layer unit tests)
 ```
 
 ## Quick start
@@ -29,9 +29,9 @@ main.py      zero-key smoke test for the data layer
    ```
    pip install -e .
    ```
-2. Smoke-test the data layer (no API key, defaults to yfinance):
+2. Smoke-test the skill scripts (no API key, defaults to yfinance):
    ```
-   python3 main.py NVDA 2024-05-10
+   pytest tests/
    ```
 3. Run a full analysis on your agent platform. In Claude Code, ask the
    `orchestrator` subagent:
@@ -58,4 +58,6 @@ debate → portfolio manager (final decision).
 ```
 pytest tests/
 ```
-Covers the retained data layer (config, env overrides, ticker handling).
+`test_skill_scripts.py` runs every skill script as a subprocess (yfinance,
+zero key); the remaining tests cover the data layer (config, env overrides,
+ticker handling).

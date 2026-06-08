@@ -56,8 +56,11 @@ original shared graph state.
 - Ratings use the 5-tier scale: Buy / Overweight / Hold / Underweight / Sell.
 
 ## Verify
-Smoke-test the data layer with no API key:
+Smoke-test the skill scripts (no API key, defaults to yfinance):
+```
+pytest tests/
+```
+Or run a single script directly, e.g.:
 ```
 python3 .claude/skills/market-data/scripts/get_stock_data.py NVDA 2024-05-01 2024-05-10
-python3 .claude/skills/news-data/scripts/get_news.py NVDA 2024-05-03 2024-05-10
 ```

@@ -17,13 +17,13 @@ block to stdout, suitable for direct inclusion in a report.
 
 ### get_stocktwits.py
 ```
-python .claude/skills/social-sentiment/scripts/get_stocktwits.py TICKER [LIMIT]
+python3 ${CLAUDE_SKILL_DIR}/scripts/get_stocktwits.py TICKER [LIMIT]
 ```
 Recent StockTwits messages plus a Bullish/Bearish tally. `LIMIT` default `30`.
 
 ### get_reddit.py
 ```
-python .claude/skills/social-sentiment/scripts/get_reddit.py TICKER [LIMIT_PER_SUB]
+python3 ${CLAUDE_SKILL_DIR}/scripts/get_reddit.py TICKER [LIMIT_PER_SUB]
 ```
 Recent posts mentioning the ticker across wallstreetbets / stocks / investing.
 `LIMIT_PER_SUB` default `5`.

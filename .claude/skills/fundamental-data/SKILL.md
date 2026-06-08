@@ -17,23 +17,23 @@ Provides company financial data. Scripts are thin wrappers over
 
 ### get_fundamentals.py
 ```
-python .claude/skills/fundamental-data/scripts/get_fundamentals.py TICKER CURR_DATE
+python3 ${CLAUDE_SKILL_DIR}/scripts/get_fundamentals.py TICKER CURR_DATE
 ```
 Comprehensive fundamentals report. `CURR_DATE` is `yyyy-mm-dd`.
 
 ### get_balance_sheet.py
 ```
-python .claude/skills/fundamental-data/scripts/get_balance_sheet.py TICKER [FREQ] [CURR_DATE]
+python3 ${CLAUDE_SKILL_DIR}/scripts/get_balance_sheet.py TICKER [FREQ] [CURR_DATE]
 ```
 
 ### get_cashflow.py
 ```
-python .claude/skills/fundamental-data/scripts/get_cashflow.py TICKER [FREQ] [CURR_DATE]
+python3 ${CLAUDE_SKILL_DIR}/scripts/get_cashflow.py TICKER [FREQ] [CURR_DATE]
 ```
 
 ### get_income_statement.py
 ```
-python .claude/skills/fundamental-data/scripts/get_income_statement.py TICKER [FREQ] [CURR_DATE]
+python3 ${CLAUDE_SKILL_DIR}/scripts/get_income_statement.py TICKER [FREQ] [CURR_DATE]
 ```
 - `FREQ`: `annual` or `quarterly` (default `quarterly`)
 - `CURR_DATE`: optional `yyyy-mm-dd`
