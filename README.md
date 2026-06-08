@@ -1,4 +1,4 @@
-# TradingAgents — Subagents + Skills
+# Trading Real Agents — Subagents + Skills
 
 A multi-agent trading-analysis framework packaged as **subagents + skills** for
 agent platforms (Claude Code, Trae, etc.). Specialized subagents — analysts,
