@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tradingagents-agents"
+version = "0.1.0"
+description = "TradingAgents as subagents + skills for agent platforms (Claude Code, Trae)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.3.0",
+    "parsel>=1.10.0",
+    "pytz>=2025.2",
+    "requests>=2.32.4",
+    "setuptools>=80.9.0",
+    "stockstats>=0.6.5",
+    "tqdm>=4.67.1",
+    "typing-extensions>=4.14.0",
+    "yfinance>=0.2.63",
+]
+
+[tool.setuptools.packages.find]
+include = ["tradingagents*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = [
+    "unit: fast isolated unit tests",
+    "integration: tests requiring external services",
+    "smoke: quick sanity-check tests",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]

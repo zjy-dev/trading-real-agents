@@ -1,0 +1,61 @@
+# TradingAgents — Subagents + Skills
+
+A multi-agent trading-analysis framework packaged as **subagents + skills** for
+agent platforms (Claude Code, Trae, etc.). Specialized subagents — analysts,
+researchers, managers, a trader, and a risk-debate team — collaborate to produce
+a final trade decision. State flows between agents through files; market data is
+fetched by self-contained skill scripts that default to yfinance and need **no
+API key**.
+
+This repository contains only the agent layer (`.claude/`) plus the data layer
+(`tradingagents/dataflows/`) that the skills reuse. There is no LLM client or
+graph-orchestration code — orchestration is driven by the agent platform.
+
+## Layout
+```
+.claude/
+  agents/    11 subagents (orchestrator + analysts + researchers + managers + trader + risk)
+  skills/    4 skills (market-data, fundamental-data, news-data, social-sentiment) + scripts
+AGENTS.md    orchestration guide (platform-agnostic)
+CLAUDE.md    Claude Code entry point
+tradingagents/
+  dataflows/        data layer reused by the skill scripts
+  default_config.py vendor routing + TRADINGAGENTS_* env overrides
+main.py      zero-key smoke test for the data layer
+```
+
+## Quick start
+1. Install the data layer (so `import tradingagents` resolves):
+   ```
+   pip install -e .
+   ```
+2. Smoke-test the data layer (no API key, defaults to yfinance):
+   ```
+   python3 main.py NVDA 2024-05-10
+   ```
+3. Run a full analysis on your agent platform. In Claude Code, ask the
+   `orchestrator` subagent:
+   > run full trading analysis for NVDA on 2024-05-10
+
+   Artifacts are written to `./analysis/<TICKER>/<TRADE_DATE>/`, ending with
+   `final_decision.md`.
+
+See **[AGENTS.md](./AGENTS.md)** for the full pipeline, subagent roles, skill
+usage, and output-format contracts.
+
+## Pipeline (summary)
+4 analysts (market / sentiment / news / fundamentals) → bull/bear investment
+debate → research manager → trader → aggressive/conservative/neutral risk
+debate → portfolio manager (final decision).
+
+## Data vendors
+- Default: **yfinance** (zero key, works out of the box).
+- Optional: set `ALPHA_VANTAGE_API_KEY` and configure `data_vendors` /
+  `tool_vendors` (via `TRADINGAGENTS_*`) to use alpha_vantage; it auto-falls
+  back to yfinance on rate-limit.
+
+## Tests
+```
+pytest tests/
+```
+Covers the retained data layer (config, env overrides, ticker handling).
