@@ -14,7 +14,7 @@ graph-orchestration code — orchestration is driven by the agent platform.
 ## Layout
 ```
 .claude/
-  agents/    11 subagents (orchestrator + analysts + researchers + managers + trader + risk)
+  agents/    10 subagents (analysts + researchers + managers + trader + risk)
   skills/    4 skills (market-data, fundamental-data, news-data, social-sentiment) + scripts
 AGENTS.md    orchestration guide (platform-agnostic)
 CLAUDE.md    Claude Code entry point
@@ -36,12 +36,12 @@ environment.
    ```
    uv run pytest tests/
    ```
-3. Run a full analysis on your agent platform. In Claude Code, ask the
-   `orchestrator` subagent:
+3. Run a full analysis on your agent platform. Just ask the main agent:
    > run full trading analysis for NVDA on 2024-05-10
 
-   Artifacts are written to `./analysis/<TICKER>/<TRADE_DATE>/`, ending with
-   `final_decision.md`.
+   The main agent orchestrates the pipeline directly, dispatching each subagent
+   at the top level (so every subagent call is visible). Artifacts are written to
+   `./analysis/<TICKER>/<TRADE_DATE>/`, ending with `final_decision.md`.
 
 See **[AGENTS.md](./AGENTS.md)** for the full pipeline, subagent roles, skill
 usage, and output-format contracts.

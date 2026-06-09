@@ -21,22 +21,27 @@ enables alpha_vantage with auto-fallback):
 - **news-data**: `get_news.py TICKER START END`, `get_global_news.py CURR_DATE [LOOKBACK] [LIMIT]`, `get_insider_transactions.py TICKER`
 - **social-sentiment**: `get_stocktwits.py TICKER [LIMIT]`, `get_reddit.py TICKER [LIMIT_PER_SUB]`
 
-## How to run a full analysis
-Ask the `orchestrator` subagent: *"run full trading analysis for NVDA on 2024-05-10"*.
-On platforms without subagent dispatch, follow the pipeline below directly.
+## How to run a full analysis (you are the orchestrator)
+When the user asks to *"run full trading analysis for NVDA on 2024-05-10"*, **you**
+(the main agent) drive the pipeline directly — do not delegate orchestration to a
+separate subagent. Dispatch each stage's specialized subagent with the Task tool
+so the user can see every subagent invocation at the top level. You do not perform
+the analysis yourself; you delegate each stage and pass state between subagents via
+files under the working directory.
 
-## Pipeline
 Inputs: `TICKER`, `TRADE_DATE` (`yyyy-mm-dd`), `MAX_DEBATE_ROUNDS=1`,
 `MAX_RISK_ROUNDS=1`, `ASSET_TYPE=stock|crypto`.
-Working directory: `./analysis/<TICKER>/<TRADE_DATE>/`. State files replace the
-original shared graph state.
+Working directory: `./analysis/<TICKER>/<TRADE_DATE>/` (create it first). State
+files replace the original shared graph state.
 
-1. **Analysts (independent, parallelizable)** — `market-analyst`,
+## Pipeline (dispatch in this order)
+1. **Analysts (independent, parallelizable)** — dispatch `market-analyst`,
    `sentiment-analyst`, `news-analyst`, `fundamentals-analyst` →
    `market_report.md` / `sentiment_report.md` / `news_report.md` /
-   `fundamentals_report.md`.
-2. **Investment debate** — for `MAX_DEBATE_ROUNDS` rounds, `bull-researcher`
-   then `bear-researcher`, appending to `debate_history.md`.
+   `fundamentals_report.md`. Wait until all four reports exist before proceeding.
+2. **Investment debate** — for `MAX_DEBATE_ROUNDS` rounds, dispatch
+   `bull-researcher` then `bear-researcher`, each appending to
+   `debate_history.md`. (Equivalent to `2 * MAX_DEBATE_ROUNDS` turns.)
 3. **research-manager** — reads debate + reports → `investment_plan.md`
    (contains `**Recommendation**`).
 4. **trader** — reads `investment_plan.md` → `trader_plan.md` (contains
@@ -46,6 +51,9 @@ original shared graph state.
    `risk_debate.md`.
 6. **portfolio-manager (terminal)** — synthesizes everything →
    `final_decision.md` (contains `**Rating**`).
+
+When `final_decision.md` exists, report its `**Rating**` and a one-line summary to
+the user, and list the artifact paths under the working directory.
 
 ## Output-format contracts (preserve exactly)
 - `investment_plan.md`: `**Recommendation**`, `**Rationale**`, `**Strategic Actions**`.

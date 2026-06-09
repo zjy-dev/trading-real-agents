@@ -5,16 +5,18 @@ the full orchestration guide: skills (data access), subagent roles, the
 end-to-end pipeline, and output-format contracts.
 
 ## Quick start
-Ask the `orchestrator` subagent to run an analysis, e.g.:
+Just ask the main agent to run an analysis, e.g.:
 
 > run full trading analysis for NVDA on 2024-05-10
 
-It drives the pipeline (4 analysts → bull/bear debate → research manager →
-trader → risk debate → portfolio manager) and writes all artifacts to
-`./analysis/<TICKER>/<TRADE_DATE>/`, ending with `final_decision.md`.
+The **main agent** orchestrates the pipeline directly (per AGENTS.md), dispatching
+each subagent at the top level so every subagent call is visible: 4 analysts →
+bull/bear debate → research manager → trader → risk debate → portfolio manager.
+All artifacts are written to `./analysis/<TICKER>/<TRADE_DATE>/`, ending with
+`final_decision.md`.
 
 ## Subagents
-`.claude/agents/`: `orchestrator`, `market-analyst`, `sentiment-analyst`,
+`.claude/agents/`: `market-analyst`, `sentiment-analyst`,
 `news-analyst`, `fundamentals-analyst`, `bull-researcher`, `bear-researcher`,
 `research-manager`, `trader`, `risk-debators`, `portfolio-manager`.
 
